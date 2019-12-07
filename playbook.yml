@@ -1,0 +1,19 @@
+---
+ 
+- hosts: localhost
+  become: yes
+
+  tasks:
+          - name: Add code repository
+            yum_repository:
+                    name: VSCode
+                    description: Visual Studio Code Repository
+                    baseurl: https://packages.microsoft.com/yumrepos/vscode
+                    enabled: 1
+                    gpgcheck: 1
+                    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+          - name: Install VS Code
+            yum:
+                    name: code
+                    state: present
