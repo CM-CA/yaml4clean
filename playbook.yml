@@ -27,8 +27,20 @@
                     name: code
                     state: present
 
-          - name: Install NodeJs and Yarn
+          - name: Install Devops Tools
             yum:
              pkg:
                      - nodejs
                      - yarn
+                     - chromium
+                     - gwenview
+                     - zeal
+                     - snapd
+
+          - name: Add Classic Library Snap
+            command: ln -s /var/lib/snapd/snap /snap
+
+          - name: Install Pycharm-Community
+            snap:
+              name: pycharm-community
+              classic: yes
