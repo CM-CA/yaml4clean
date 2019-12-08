@@ -4,6 +4,15 @@
   become: yes
 
   tasks:
+          - name: Update System.
+            yum:
+                    update_cache: yes
+
+          - name: Install Tilix
+            yum:
+                    name: tilix
+                    state: latest
+
           - name: Add code repository
             yum_repository:
                     name: VSCode
@@ -17,3 +26,9 @@
             yum:
                     name: code
                     state: present
+
+          - name: Install NodeJs and Yarn
+            yum:
+             pkg:
+                     - nodejs
+                     - yarn
