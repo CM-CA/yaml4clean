@@ -44,3 +44,9 @@
             snap:
               name: pycharm-community
               classic: yes
+
+          - name: Install vue/cli 3.0
+            command: yarn global add @vue/cli
+
+          - name: Install dotenv
+            command: yarn add dotenv
