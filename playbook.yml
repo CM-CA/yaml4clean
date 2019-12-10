@@ -35,15 +35,6 @@
                      - chromium
                      - gwenview
                      - zeal
-                     - snapd
-
-          - name: Add Classic Library Snap
-            command: ln -s /var/lib/snapd/snap /snap
-
-          - name: Install Pycharm-Community
-            snap:
-              name: pycharm-community
-              classic: yes
 
           - name: Install vue/cli 3.0
             command: yarn global add @vue/cli
