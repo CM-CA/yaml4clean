@@ -41,3 +41,20 @@
 
           - name: Install dotenv
             command: yarn add dotenv
+
+          - name: Download jetbrains Toolbox with check(sha256)
+            get_url:
+              url: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.16.6067.tar.gz
+              dest: /home/okuda/Descargas/
+              checksum: sha256:3b9c6cd630e602c845c3f716f735f9748fc2086986f45fbdf6a555484e95c45e
+
+          - name: Create a JToolBox direcory if it does not exist
+            file:
+              path: /home/okuda/JToolBox
+              state: directory
+              mode: '0755'
+
+          - name: Extract JToolbox
+            unarchive:
+              src: /home/okuda/Descargas/jetbrains-toolbox-1.16.6067.tar.gz
+              dest: /home/okuda/JToolBox
