@@ -1,0 +1,19 @@
+---
+ 
+- hosts: localhost
+  become: yes
+  
+  tasks:
+
+        - name: Get dependencys
+          command: sudo dnf upgrade && sudo dnf install dkms git gcc gcc-c++ kernel-headers kernel-devel make
+
+        - name: Get Driver and Install
+          shell: |
+            cd
+            git clone -b extended --single-branch https://github.com/lwfinger/rtlwifi_new.git
+            cd rtlwifi_new
+            make
+            sudo make install
+            sudo modprobe -r rtl8723de
+            sudo modprobe rtl8723de

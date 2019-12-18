@@ -31,11 +31,13 @@
             yum:
              pkg:
                      - nodejs
-                     - yarn
                      - chromium
                      - gwenview
                      - zeal
 
+          - name: Yarn Install
+            command: sudo npm install yarn -g
+            
           - name: Install vue/cli 3.0
             command: yarn global add @vue/cli
 
