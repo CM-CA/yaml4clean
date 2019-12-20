@@ -31,7 +31,6 @@
             yum:
              pkg:
                      - nodejs
-                     - chromium
                      - gwenview
                      - zeal
 
@@ -60,3 +59,18 @@
             unarchive:
               src: /home/okuda/Descargas/jetbrains-toolbox-1.16.6067.tar.gz
               dest: /home/okuda/JToolBox
+
+          - name: Install Oh My ZSH
+            command: sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+            confirm: yes
+
+          - name: Spaceship Theme
+            shell: |
+            git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+            ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+          - name: Install Chrome
+            shell: |
+            sudo dnf install fedora-workstation-repositories
+            sudo dnf config-manager --set-enabled google-chrome
+            sudo dnf install google-chrome-stable
