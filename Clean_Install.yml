@@ -32,7 +32,6 @@
           - nodejs
           - gwenview
           - zeal
-          - google-chrome-stable
 
     - name: Yarn Install
       command: sudo npm install yarn -g
