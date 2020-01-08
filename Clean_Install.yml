@@ -1,5 +1,4 @@
 ---
- 
 - hosts: localhost
   become: yes
 
@@ -36,7 +35,7 @@
 
           - name: Yarn Install
             command: sudo npm install yarn -g
-            
+
           - name: Install vue/cli 3.0
             command: yarn global add @vue/cli
 
@@ -70,7 +69,5 @@
             ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
           - name: Install Chrome
-            shell: |
-            sudo dnf install fedora-workstation-repositories
-            sudo dnf config-manager --set-enabled google-chrome
-            sudo dnf install google-chrome-stable
+            command: sudo dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+            
