@@ -3,70 +3,61 @@
   become: yes
 
   tasks:
-          - name: Update System.
-            yum:
-                    update_cache: yes
+    - name: Update System.
+      yum:
+        update_cache: yes
 
-          - name: Install Tilix
-            yum:
-                    name: tilix
-                    state: latest
+    - name: Install Tilix
+      yum:
+        name: tilix
+        state: latest
 
-          - name: Add code repository
-            yum_repository:
-                    name: VSCode
-                    description: Visual Studio Code Repository
-                    baseurl: https://packages.microsoft.com/yumrepos/vscode
-                    enabled: 1
-                    gpgcheck: 1
-                    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    - name: Add code repository
+      yum_repository:
+        name: VSCode
+        description: Visual Studio Code Repository
+        baseurl: https://packages.microsoft.com/yumrepos/vscode
+        enabled: 1
+        gpgcheck: 1
+        gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
-          - name: Install VS Code
-            yum:
-                    name: code
-                    state: present
+    - name: Install VS Code
+      yum:
+        name: code
+        state: present
 
-          - name: Install Devops Tools
-            yum:
-             pkg:
-                     - nodejs
-                     - gwenview
-                     - zeal
+    - name: Install Devops Tools
+      yum:
+        pkg:
+          - nodejs
+          - gwenview
+          - zeal
 
-          - name: Yarn Install
-            command: sudo npm install yarn -g
+    - name: Yarn Install
+      command: sudo npm install yarn -g
 
-          - name: Install vue/cli 3.0
-            command: yarn global add @vue/cli
+    - name: Install vue/cli 3.0
+      command: yarn global add @vue/cli
 
-          - name: Install dotenv
-            command: yarn add dotenv
+    - name: Install dotenv
+      command: yarn add dotenv
 
-          - name: Download jetbrains Toolbox with check(sha256)
-            get_url:
-              url: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.16.6067.tar.gz
-              dest: /home/okuda/Descargas/
-              checksum: sha256:3b9c6cd630e602c845c3f716f735f9748fc2086986f45fbdf6a555484e95c45e
+    - name: Download jetbrains Toolbox with check(sha256)
+      get_url:
+        url: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.16.6067.tar.gz
+        dest: /home/okuda/Descargas/
+        checksum: sha256:3b9c6cd630e602c845c3f716f735f9748fc2086986f45fbdf6a555484e95c45e
 
-          - name: Create a JToolBox direcory if it does not exist
-            file:
-              path: /home/okuda/JToolBox
-              state: directory
-              mode: '0755'
+    - name: Create a JToolBox direcory if it does not exist
+      file:
+        path: /home/okuda/JToolBox
+        state: directory
+        mode: "0755"
 
-          - name: Extract JToolbox
-            unarchive:
-              src: /home/okuda/Descargas/jetbrains-toolbox-1.16.6067.tar.gz
-              dest: /home/okuda/JToolBox
+    - name: Extract JToolbox
+      unarchive:
+        src: /home/okuda/Descargas/jetbrains-toolbox-1.16.6067.tar.gz
+        dest: /home/okuda/JToolBox
 
-          - name: Install Oh My ZSH
-            command: sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-            confirm: yes
-
-          - name: Spaceship Theme
-            shell: |
-            git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
-            ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-
-          - name: Install Chrome
-            command: sudo dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    - name: Install Chrome
+      command: sudo dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
